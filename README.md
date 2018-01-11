@@ -1,4 +1,4 @@
 
 # text-server
 
-I'm a tiny Daniel.
+Serves one HTML page set through an environmental environment.
