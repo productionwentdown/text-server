@@ -7,7 +7,7 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-    w.Header().Add("Content-Type", "text/html; charset=utf-8")
+	w.Header().Add("Content-Type", "text/html; charset=utf-8")
 	fmt.Fprintf(w, "%s", os.Getenv("TEXT"))
 }
 
