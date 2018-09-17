@@ -2,9 +2,10 @@ FROM golang:1.10-alpine as go
 
 # args
 ARG version="1.0.0"
+ARG repo="github.com/productionwentdown/text-server"
 
 # source
-WORKDIR $GOPATH/src/text-server
+WORKDIR $GOPATH/src/${repo}
 COPY . .
 
 # build
