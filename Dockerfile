@@ -1,4 +1,4 @@
-FROM golang:1.10-alpine as go
+FROM golang:1.10-alpine as build
 
 # args
 ARG version="1.0.0"
@@ -23,7 +23,7 @@ LABEL org.label-schema.version=${version}
 LABEL org.label-schema.schema-version="1.0"
 
 # copy binary
-COPY --from=go /text-server /text-server
+COPY --from=build /text-server /text-server
 
 EXPOSE 8080
 
