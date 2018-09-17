@@ -1,16 +1,29 @@
 FROM golang:1.10-alpine as go
 
-WORKDIR /go/src/text-server
+# args
+ARG version="1.0.0"
+
+# source
+WORKDIR $GOPATH/src/text-server
 COPY . .
+
+# build
 ENV CGO_ENABLED=0
 ENV GOOS=linux
 ENV GOARCH=amd64
-RUN go build -ldflags '-extldflags "-static"' -o text-server
+RUN go build -ldflags "-s -w" -o /text-server
 
 
 FROM scratch
 
+# labels
+LABEL org.label-schema.vcs-url="https://github.com/productionwentdown/text-server"
+LABEL org.label-schema.version=${version}
+LABEL org.label-schema.schema-version="1.0"
+
+# copy binary
+COPY --from=go /text-server /text-server
+
 EXPOSE 8080
-COPY --from=go /go/src/text-server/text-server text-server
 
 ENTRYPOINT ["/text-server"]
