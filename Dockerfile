@@ -17,6 +17,8 @@ RUN go build -ldflags "-s -w" -o /text-server
 
 FROM scratch
 
+ARG version
+
 # labels
 LABEL org.label-schema.vcs-url="https://github.com/productionwentdown/text-server"
 LABEL org.label-schema.version=${version}
